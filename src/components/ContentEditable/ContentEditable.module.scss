@@ -1,0 +1,10 @@
+.Editable {
+  background-color: rgb(177, 223, 230);
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+.Editable:empty::before {
+  content: attr(placeholder);
+  color: rgba(0, 0, 0, 0.4);
+}

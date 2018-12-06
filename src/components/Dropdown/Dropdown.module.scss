@@ -1,0 +1,14 @@
+@import "../../assets/scss/variables";
+
+.Dropdown {
+  position: absolute;
+  background-color: $theme-bg;
+  cursor: pointer;
+  top: calc(100% - 20px);
+  z-index: 99;
+}
+
+.Dropdown > div:hover {
+  background: $green;
+  color: $white;
+}

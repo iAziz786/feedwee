@@ -1,0 +1,22 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/spacing";
+
+.WriteTweet {
+  background-color: $text-area-bg;
+  position: relative;
+}
+
+.text-area {
+  position: relative;
+  border: 1px solid greenyellow;
+  border-radius: 5px;
+  @extend .p-2;
+  @extend .mb-2;
+}
+
+.text-area:empty::before {
+  background-color: transparent;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  content: attr(placeholder);
+}

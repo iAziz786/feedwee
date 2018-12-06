@@ -1,0 +1,16 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/spacing";
+
+.Button {
+  border-radius: 50px;
+  border-color: transparent;
+  color: $primary-color;
+  cursor: pointer;
+  @extend .px-3;
+  @extend .py-2;
+}
+
+.Tweet {
+  @extend .Button;
+  background: green;
+}

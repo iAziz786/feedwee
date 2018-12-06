@@ -1,0 +1,31 @@
+@import '../../assets/scss/text.module';
+
+.Feed {
+  background-color: #15202b;
+  cursor: pointer;
+}
+
+.Feed:hover {
+  background-color: #101922;
+}
+
+.border {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.border:last-child {
+  border-bottom: 1px solid gray;
+}
+
+.content {
+  @extend p;
+  margin: 0px;
+}
+
+.author {
+  @extend .content;
+  @extend .font-weight-bold;
+  line-height: 16px;
+}

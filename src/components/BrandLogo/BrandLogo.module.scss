@@ -1,0 +1,14 @@
+@import "../../assets/scss/variables";
+@import url("https://fonts.googleapis.com/css?family=Cookie");
+
+.logo-font {
+  font-family: "Cookie", cursive;
+  font-size: 24px;
+}
+
+.logo-font {
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
