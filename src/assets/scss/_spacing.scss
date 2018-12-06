@@ -43,3 +43,22 @@ $spacers: map-merge(
     }
   }
 }
+
+@each $prop, $abbrev in (margin: m) {
+  .#{$abbrev}t-auto,
+  .#{$abbrev}y-auto {
+    #{$prop}-top: auto !important;
+  } 
+  .#{$abbrev}b-auto,
+  .#{$abbrev}y-auto {
+    #{$prop}-bottom: auto !important;
+  } 
+  .#{$abbrev}l-auto,
+  .#{$abbrev}x-auto {
+    #{$prop}-left: auto !important;
+  } 
+  .#{$abbrev}r-auto,
+  .#{$abbrev}x-auto {
+    #{$prop}-right: auto !important;
+  } 
+}
