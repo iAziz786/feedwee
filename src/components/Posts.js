@@ -1,35 +1,44 @@
 import React from 'react';
-import {} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import axios from 'axios';
+import Loadable from 'react-loadable';
 import PropTypes from 'prop-types';
-import Feed from './Feed/';
 import WriteTweet from './WriteTweet';
+import ExpandTweet from './ExpandTweet';
+import Loading from './Loading';
 
-const feeds = [
-  { id: 'sdifoasf', content: 'Some aghsdgContent', author: 'someone' },
-  { id: 'sdifoiasdfasasf', content: 'Some aghsdgContent', author: 'someone' },
-  { id: 'sdifof', content: 'Somasdfe Content', author: 'not me' },
-  {
-    id: 'sdifosiasdfsdfasf',
-    content: 'Some asdafContent',
-    author: 'Mohammad Aziz'
+const Feeds = Loadable.Map({
+  loader: {
+    Feed: () => import('./Feed'),
+    feeds: () => axios.get('/api/tweets').then(res => res.data.tweets)
   },
-  { id: 'sdifoasssss', content: 'Somesf Content', author: 'Hacker' },
-  { id: 'sdifsadfasdddof', content: 'Somasdfe Content', author: 'not me' },
-  { id: 'sdifossdfasf', content: 'Some asdafContent', author: 'Mohammad Aziz' },
-  { id: 'sdifoassssssssss', content: 'Somesf Content', author: 'Hacker' }
-];
-
-const Posts = React.memo(function Posts(props) {
-  return (
-    <div className={'flex-fill col-12 col-md-8 p-0 Feeds'}>
-      <WriteTweet />
-      {props.feeds.map(feed => (
-        <Feed key={feed.id} feed={feed} />
-      ))}
-    </div>
-  );
+  render(loaded, props) {
+    let Feed = loaded.Feed.default;
+    let feeds = loaded.feeds;
+    return feeds.map(feed => (
+      <Link
+        key={feed._id}
+        to={`/${feed.creator._id}/status/${feed._id}`}
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
+        <Feed key={feed._id} feed={feed} />
+      </Link>
+    ));
+  },
+  loading: Loading
 });
+
+class Posts extends React.PureComponent {
+  render() {
+    return (
+      <div className={'flex-fill col-12 col-md-8 p-0 Feeds'}>
+        <WriteTweet />
+        <Feeds />
+      </div>
+    );
+  }
+}
 
 Posts.feeds = PropTypes.array;
 
-export default () => <Posts feeds={feeds} />;
+export default Posts;
