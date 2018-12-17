@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import ButtonStyle from "./Button.module.scss";
+import ButtonStyle from './Button.module.scss';
 
 const Tweet = React.memo(function Tweet({ className, ...props }) {
   return (
     <button
-      href={"/"}
-      className={`${ButtonStyle.Tweet} ${className}`}
+      href={'/'}
+      className={`${ButtonStyle.Tweet} ${className && className}`}
       {...props}
     >
       {props.children}

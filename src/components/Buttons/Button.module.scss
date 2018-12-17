@@ -1,13 +1,18 @@
-@import "../../assets/scss/variables";
-@import "../../assets/scss/spacing";
+@import '../../assets/scss/variables';
+@import '../../assets/scss/spacing';
 
 .Button {
   border-radius: 50px;
   border-color: transparent;
   color: $primary-color;
+  font-weight: bold;
   cursor: pointer;
   @extend .px-3;
   @extend .py-2;
+}
+
+.Button:disabled {
+  color: rgba($color: $primary-color, $alpha: 0.5);
 }
 
 .Tweet {
