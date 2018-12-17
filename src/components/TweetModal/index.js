@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa';
 import { Card } from 'react-hover-card';
 import Feed from '../Feed';
 
-import ExpandTweetStyle from './ExpandTweet.module.scss';
+import TweetModalStyle from './TweetModal.module.scss';
 
 class TweetModal extends React.PureComponent {
   componentDidMount() {
@@ -25,8 +25,8 @@ class TweetModal extends React.PureComponent {
       history: { goBack }
     } = this.props;
     return (
-      <div className={`${ExpandTweetStyle.Expand}`} onClick={goBack}>
-        <div className={`${ExpandTweetStyle['close-button']}`}>
+      <div className={`${TweetModalStyle.Expand}`} onClick={goBack}>
+        <div className={`${TweetModalStyle['close-button']}`}>
           <FaTimes
             onClick={e => {
               e.stopPropagation();
@@ -35,7 +35,7 @@ class TweetModal extends React.PureComponent {
             size={27}
           />
         </div>
-        <div className={`${ExpandTweetStyle['float-content']}`}>
+        <div className={`${TweetModalStyle['float-content']}`}>
           <p>This is cool: {feedId}</p>
         </div>
       </div>

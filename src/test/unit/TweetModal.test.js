@@ -1,9 +1,9 @@
-import React from "react";
-import { render } from "react-testing-library";
-import ExpandTweet from "../../components/ExpandTweet";
+import React from 'react';
+import { render } from 'react-testing-library';
+import TweetModal from '../../components/TweetModal';
 
-describe("ExpandTweet", () => {
-  it("should render the component", () => {
-    render(<ExpandTweet />);
+describe('TweetModal', () => {
+  it('should render the component', () => {
+    render(<TweetModal />);
   });
 });
