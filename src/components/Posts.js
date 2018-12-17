@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loadable from 'react-loadable';
 import PropTypes from 'prop-types';
 import WriteTweet from './WriteTweet';
-import ExpandTweet from './ExpandTweet';
+import TweetModal from './TweetModal';
 import Loading from './Loading';
 
 const Feeds = Loadable.Map({
@@ -18,7 +18,11 @@ const Feeds = Loadable.Map({
     return feeds.map(feed => (
       <Link
         key={feed._id}
-        to={`/${feed.creator._id}/status/${feed._id}`}
+        to={{
+          pathname: `/${feed.creator._id}/status/${feed._id}`,
+          // This is a treak!
+          state: { modal: true }
+        }}
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
         <Feed key={feed._id} feed={feed} />
