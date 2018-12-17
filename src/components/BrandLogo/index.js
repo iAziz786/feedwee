@@ -1,13 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import BrandLogoStyle from "./BrandLogo.module.scss";
+import BrandLogoStyle from './BrandLogo.module.scss';
 
 const BrandLogo = React.memo(props => {
   return (
     <div {...props}>
-      <h1 className={BrandLogoStyle["logo-font"]}>
-        <a href={"/"}>{props.name}</a>
+      <h1 className={BrandLogoStyle['logo-font']}>
+        <Router>
+          <Link to={'/'}>{props.name}</Link>
+        </Router>
       </h1>
     </div>
   );
