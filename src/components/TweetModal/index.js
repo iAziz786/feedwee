@@ -5,7 +5,7 @@ import Feed from '../Feed';
 
 import ExpandTweetStyle from './ExpandTweet.module.scss';
 
-class ExpandTweet extends React.PureComponent {
+class TweetModal extends React.PureComponent {
   componentDidMount() {
     window.addEventListener('keydown', event => {
       if (event.keyCode === 27) {
@@ -43,4 +43,4 @@ class ExpandTweet extends React.PureComponent {
   }
 }
 
-export default ExpandTweet;
+export default TweetModal;
