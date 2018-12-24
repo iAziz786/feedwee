@@ -5,7 +5,7 @@ import text from '../../assets/scss/_text.module.scss';
 import TweetFooterStyle from './TweetFooter.module.scss';
 
 const TweetFooter = React.memo(function TweetFooter(props) {
-  const [heartSelected, setHeartState] = useState(false);
+  const [heartSelected, useHeartState] = useState(false);
   return (
     <div className={`d-flex mt-2 justify-content-around ${text.small}`}>
       <FiMessageCircle size={18} stroke={TweetFooterStyle.secondaryColor} />
@@ -13,7 +13,7 @@ const TweetFooter = React.memo(function TweetFooter(props) {
       <FiHeart
         onClick={event => {
           event.stopPropagation();
-          setHeartState(!heartSelected);
+          useHeartState(!heartSelected);
         }}
         size={18}
         stroke={TweetFooterStyle.secondaryColor}
