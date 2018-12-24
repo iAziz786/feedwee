@@ -29,3 +29,14 @@
   @extend .font-weight-bold;
   line-height: 16px;
 }
+
+.author-link {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
