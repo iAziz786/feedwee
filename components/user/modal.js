@@ -16,14 +16,20 @@ const emailSchema = new Schema(
 const userSchema = new Schema(
   {
     name: {
-      type: String
+      type: String,
+      required: true
     },
     email: {
       type: emailSchema,
       required: true
     },
-    dob: {
+    birthday: {
       type: Date
+    },
+
+    username: {
+      type: String,
+      required: true
     }
   },
   { timestamps: true }
