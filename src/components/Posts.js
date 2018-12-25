@@ -19,7 +19,7 @@ const Feeds = Loadable.Map({
       <Link
         key={feed._id}
         to={{
-          pathname: `/${feed.creator._id}/status/${feed._id}`,
+          pathname: `/${feed.creator.username}/status/${feed._id}`,
           // This is a treak!
           state: { modal: true }
         }}
