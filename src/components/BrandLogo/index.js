@@ -8,9 +8,7 @@ const BrandLogo = React.memo(props => {
   return (
     <div {...props}>
       <h1 className={BrandLogoStyle['logo-font']}>
-        <Router>
-          <Link to={'/'}>{props.name}</Link>
-        </Router>
+        <Link to={'/'}>{props.name}</Link>
       </h1>
     </div>
   );
