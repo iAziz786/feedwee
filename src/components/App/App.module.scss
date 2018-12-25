@@ -1,0 +1,11 @@
+.App {
+  position: relative;
+  padding-top: 55px;
+}
+
+@media (max-width: 720px) {
+  .App {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}

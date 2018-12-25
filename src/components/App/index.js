@@ -2,20 +2,26 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
-import Header from './Header';
-import MainBody from './MainBody';
-import Loading from './Loading';
+import Header from '../Header';
+import MainBody from '../MainBody';
+import Loading from '../Loading';
 
-import index from '../assets/scss/index.module.scss';
+import AppStyle from './App.module.scss';
+import index from '../../assets/scss/index.module.scss';
 
 const TweetModal = Loadable.Map({
   loader: {
-    TweetModal: () => import('./TweetModal')
+    TweetModal: () => import('../TweetModal')
   },
   render(loaded, props) {
     const TweetModal = loaded.TweetModal.default;
     return <TweetModal {...props} />;
   },
+  loading: Loading
+});
+
+const Profile = Loadable({
+  loader: () => import('../Profile'),
   loading: Loading
 });
 
@@ -61,13 +67,16 @@ class App extends React.PureComponent {
           showDropdown={this.state.showDropdown}
           toggleDropdown={this.toggleDropdown}
         />
-        <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path={'/'} component={MainBody} />
-          <Route path={'/:userId/status/:feedId'} component={TweetModal} />
-        </Switch>
-        {isModal && (
-          <Route path={'/:userId/status/:feedId'} component={TweetModal} />
-        )}
+        <div className={AppStyle.App}>
+          <Switch location={isModal ? this.previousLocation : location}>
+            <Route exact path={'/'} component={MainBody} />
+            <Route path={'/:userId/status/:feedId'} component={TweetModal} />
+            <Route path={'/:username'} component={Profile} />
+          </Switch>
+          {isModal && (
+            <Route path={'/:userId/status/:feedId'} component={TweetModal} />
+          )}
+        </div>
       </div>
     );
   }
