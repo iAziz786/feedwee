@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FiHome, FiBell, FiMail, FiSearch } from 'react-icons/fi';
 
 import BrandLogo from '../BrandLogo';
 import BurgerIcon from '../BurgerIcon';
@@ -24,31 +26,51 @@ class Header extends PureComponent {
 
   render() {
     return (
-      <div className={HeaderStyle.Header}>
-        <nav className={'d-flex justify-content-between align-items-center'}>
-          <div className={`d-flex ${HeaderStyle['header-options']}`}>
-            <p>Home</p>
-            <p>Moments</p>
-          </div>
-          <BrandLogo name={'FeedWee'} />
-          <div style={{ position: 'relative' }}>
-            <BurgerIcon
-              className={'d-sm-block d-md-none'}
-              onClick={this.props.toggleDropdown}
-            />
-            {/* <Dropdown show={this.props.showDropdown} /> */}
+      <div className={`d-flex ${HeaderStyle.Header}`}>
+        <div className={`d-flex ${HeaderStyle['Header-Inner']}`}>
+          <nav
+            className={
+              'container d-flex justify-content-between align-items-center'
+            }
+          >
             <div
-              className={`d-flex ${HeaderStyle['header-options']}`}
-              onClick={this.props.toggleDropdown}
+              className={'row justify-content-between'}
+              style={{ width: '100%' }}
             >
-              {this.state.isLoggedIn ? (
-                <a href="/logout">Logout</a>
-              ) : (
-                <a href="/oauth/authorize">Login</a>
-              )}
+              <div className={`d-flex col-4 justify-content-around`}>
+                <Link to="/">
+                  <FiHome className={HeaderStyle['icon-style']} />
+                </Link>
+                <Link to="/explore">
+                  <FiSearch className={HeaderStyle['icon-style']} />
+                </Link>
+                <Link to="/notifications">
+                  <FiBell className={HeaderStyle['icon-style']} />
+                </Link>
+                <Link to="/messages">
+                  <FiMail className={HeaderStyle['icon-style']} />
+                </Link>
+              </div>
+              <div style={{ position: 'relative' }}>
+                <BurgerIcon
+                  className={'d-sm-block d-md-none'}
+                  onClick={this.props.toggleDropdown}
+                />
+                {/* <Dropdown show={this.props.showDropdown} /> */}
+                <div
+                  className={`d-flex ${HeaderStyle['header-options']}`}
+                  onClick={this.props.toggleDropdown}
+                >
+                  {this.state.isLoggedIn ? (
+                    <a href="/logout">Logout</a>
+                  ) : (
+                    <a href="/oauth/authorize">Login</a>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
     );
   }
