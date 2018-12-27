@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
 import Header from '../Header';
-import MainBody from '../MainBody';
 import Loading from '../Loading';
 
 import AppStyle from './App.module.scss';
 import index from '../../assets/scss/index.module.scss';
+import Explore from '../Explore';
+import Notifications from '../Notifications';
+import Messages from '../Messages';
 
 const TweetModal = Loadable.Map({
   loader: {
@@ -22,6 +24,11 @@ const TweetModal = Loadable.Map({
 
 const Profile = Loadable({
   loader: () => import('../Profile'),
+  loading: Loading
+});
+
+const MainBody = Loadable({
+  loader: () => import('../MainBody'),
   loading: Loading
 });
 
@@ -62,7 +69,12 @@ class App extends React.PureComponent {
       this.previousLocation !== location
     );
     return (
-      <div className={index.theme} onClick={this.handleOnClick} {...this.props}>
+      <div
+        className={index.theme}
+        onClick={this.handleOnClick}
+        {...this.props}
+        style={{ height: '100%' }}
+      >
         <Header
           showDropdown={this.state.showDropdown}
           toggleDropdown={this.toggleDropdown}
@@ -70,6 +82,9 @@ class App extends React.PureComponent {
         <div className={AppStyle.App}>
           <Switch location={isModal ? this.previousLocation : location}>
             <Route exact path={'/'} component={MainBody} />
+            <Route path={'/explore'} component={Explore} />
+            <Route path={'/notifications'} component={Notifications} />
+            <Route path={'/messages'} component={Messages} />
             <Route path={'/:userId/status/:feedId'} component={TweetModal} />
             <Route path={'/:username'} component={Profile} />
           </Switch>
