@@ -79,7 +79,7 @@
     "dev:client": "PORT=5000 yarn client",
     "dev:server": "PORT=4000 nodemon server.js",
     "start": "node server.js",
-    "postinstall": "yarn client",
+    "heroku-prebuild": "yarn client",
     "dev": "npm-run-all --parallel dev:*"
   },
   "eslintConfig": {
