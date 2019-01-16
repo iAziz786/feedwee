@@ -1,7 +1,5 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { Card } from 'react-hover-card';
-import Feed from '../Feed';
 
 import TweetModalStyle from './TweetModal.module.scss';
 
