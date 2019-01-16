@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 
 import ProfileStyle from './Profile.module.scss';
+import ProfileDetails from '../ProfileDetails';
 
 class Profile extends PureComponent {
   render() {
     return (
-      <div className={'container'}>
+      <div className={`container`}>
         <div className={'row'}>
-          <div className={'col-12 col-md-8'}>
+          <div className={`${ProfileStyle['container']} col-12 col-md-8`}>
             <div>
               <img
                 className={ProfileStyle['cover-image']}
@@ -17,6 +18,7 @@ class Profile extends PureComponent {
                 }
               />
             </div>
+            <ProfileDetails />
           </div>
           <div className={'d-none d-md-block col-4'}>
             <div>

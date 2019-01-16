@@ -1,0 +1,48 @@
+@import '../../assets/scss/variables';
+
+.main-wrapper {
+  margin-bottom: 15px;
+}
+
+.names-wrapper {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.bio-wrapper {
+  margin-bottom: 10px;
+}
+
+.other-wrapper {
+  color: $secondary-color;
+  margin-bottom: 10px;
+}
+
+.other-wrapper svg {
+  margin-right: 5px;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 19px;
+}
+
+.username {
+  color: $secondary-color;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.other-detail {
+  margin-right: 10px;
+}
+
+.follow-detail {
+  color: $secondary-color;
+  font-size: 15px;
+}
+
+.follow-detail span {
+  color: $white;
+  font-weight: 700;
+}
