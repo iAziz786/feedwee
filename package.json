@@ -78,7 +78,7 @@
     "test": "node scripts/test.js",
     "dev:client": "PORT=5000 yarn client",
     "dev:server": "PORT=4000 nodemon server.js",
-    "start": "PORT=4000 node server.js",
+    "start": "node server.js",
     "dev": "npm-run-all --parallel dev:*"
   },
   "eslintConfig": {
