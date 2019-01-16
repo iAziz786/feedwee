@@ -2,29 +2,17 @@ const passport = require('passport');
 const OpenIdConnect = require('passport-openidconnect').Strategy;
 const { User } = require('../components/user/modal');
 
-// const okta = {
-//   issuer: 'https://dev-396519.oktapreview.com/oauth2/default',
-//   authorizationURL:
-//     'https://dev-396519.oktapreview.com/oauth2/default/v1/authorize',
-//   tokenURL: 'https://dev-396519.oktapreview.com/oauth2/default/v1/token',
-//   userInfoURL: 'https://dev-396519.oktapreview.com/oauth2/default/v1/userinfo',
-//   clientID: process.env.OKTA_CLIENT,
-//   clientSecret: process.env.OKTA_SECRET,
-//   callbackURL: 'http://localhost:4000/authorization-code/callback',
-//   scope: 'profile'
-// };
-
 passport.use(
   new OpenIdConnect(
     {
       issuer: `${process.env.OAUTH_SERVER}`,
       authorizationURL: `${process.env.OAUTH_SERVER}/oauth/authorize`,
       tokenURL: `${process.env.OAUTH_SERVER}/oauth/token`,
+      userInfoURL: `${process.env.OAUTH_SERVER}/oauth/userinfo`,
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: 'http://localhost:4000/authorization-code/callback',
-      scope: 'profile',
-      skipUserProfile: true
+      scope: 'profile'
     },
     // okta,
     async (
