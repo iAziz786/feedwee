@@ -12,7 +12,7 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: process.env.OAUTH_REDIRECT_URI,
-      scope: 'profile'
+      scope: 'profile email phone'
     },
     // okta,
     async (
