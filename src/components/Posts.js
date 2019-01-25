@@ -1,10 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loadable from 'react-loadable';
 import PropTypes from 'prop-types';
-import WriteTweet from './WriteTweet';
-import TweetModal from './TweetModal';
 import Loading from './Loading';
 
 const Feeds = Loadable.Map({
@@ -35,8 +33,7 @@ const Feeds = Loadable.Map({
 class Posts extends React.PureComponent {
   render() {
     return (
-      <div className={'flex-fill col-12 col-md-8 p-0 Feeds'}>
-        <WriteTweet />
+      <div className={'flex-fill p-0 Feeds'}>
         <Feeds />
       </div>
     );

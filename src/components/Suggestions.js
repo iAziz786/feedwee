@@ -7,11 +7,9 @@ const Suggestions = React.memo(function Suggestions(props) {
     <div
       className={'d-none d-lg-block flex-fill col-3  mx-1 border-orange Aside'}
     >
-      <Card>
-        Right Sidebar
-      </Card>
+      <Card>No suggested people to follow</Card>
     </div>
-  )
+  );
 });
 
 export default Suggestions;
