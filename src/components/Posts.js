@@ -19,7 +19,7 @@ const Feeds = Loadable.Map({
         to={{
           pathname: `/${feed.creator.username}/status/${feed._id}`,
           // This is a treak!
-          state: { modal: true }
+          state: { modal: true, feed }
         }}
         style={{ textDecoration: 'none', color: 'inherit' }}
       >
