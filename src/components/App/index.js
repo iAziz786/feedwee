@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
 import Header from '../Header';
@@ -11,13 +11,13 @@ import Explore from '../Explore';
 import Notifications from '../Notifications';
 import Messages from '../Messages';
 
-const TweetModal = Loadable.Map({
+const Status = Loadable.Map({
   loader: {
-    TweetModal: () => import('../TweetModal')
+    Status: () => import('../Status')
   },
   render(loaded, props) {
-    const TweetModal = loaded.TweetModal.default;
-    return <TweetModal {...props} />;
+    const Status = loaded.Status.default;
+    return <Status {...props} />;
   },
   loading: Loading
 });
@@ -37,8 +37,6 @@ class App extends React.PureComponent {
     showDropdown: false
   };
 
-  previousLocation = this.props.location;
-
   toggleDropdown = () => {
     this.setState(prevState => ({
       showDropdown: !prevState.showDropdown
@@ -51,23 +49,7 @@ class App extends React.PureComponent {
     }
   };
 
-  componentDidUpdate(prevProp, prevState) {
-    const { location } = prevProp;
-    if (
-      this.props.history.action !== 'POP' &&
-      (!location.state || !location.state.modal)
-    ) {
-      this.previousLocation = location;
-    }
-  }
-
   render() {
-    const { location } = this.props;
-    const isModal = !!(
-      location.state &&
-      location.state.modal &&
-      this.previousLocation !== location
-    );
     return (
       <div
         className={index.theme}
@@ -79,18 +61,15 @@ class App extends React.PureComponent {
           showDropdown={this.state.showDropdown}
           toggleDropdown={this.toggleDropdown}
         />
-        <div className={AppStyle.App}>
-          <Switch location={isModal ? this.previousLocation : location}>
+        <div className={`container ${AppStyle.App}`}>
+          <Switch>
             <Route exact path={'/'} component={MainBody} />
             <Route path={'/explore'} component={Explore} />
             <Route path={'/notifications'} component={Notifications} />
             <Route path={'/messages'} component={Messages} />
-            <Route path={'/:userId/status/:feedId'} component={TweetModal} />
+            <Route path={'/:userId/status/:feedId'} component={Status} />
             <Route path={'/:username'} component={Profile} />
           </Switch>
-          {isModal && (
-            <Route path={'/:userId/status/:feedId'} component={TweetModal} />
-          )}
         </div>
       </div>
     );
