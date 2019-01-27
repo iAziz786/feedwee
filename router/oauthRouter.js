@@ -6,7 +6,7 @@ const oauthRouter = Router();
 oauthRouter.get('/oauth/authorize', passport.authenticate('openidconnect'));
 oauthRouter.get(
   '/authorization-code/callback',
-  passport.authenticate('openidconnect', { successReturnToOrRedirect: true })
+  passport.authenticate('openidconnect', { successRedirect: '/' })
 );
 
 module.exports = oauthRouter;
