@@ -51,12 +51,7 @@ class App extends React.PureComponent {
 
   render() {
     return (
-      <div
-        className={index.theme}
-        onClick={this.handleOnClick}
-        {...this.props}
-        style={{ height: '100%' }}
-      >
+      <div className={index.theme} onClick={this.handleOnClick} {...this.props}>
         <Header
           showDropdown={this.state.showDropdown}
           toggleDropdown={this.toggleDropdown}
