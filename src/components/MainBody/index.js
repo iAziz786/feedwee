@@ -9,7 +9,7 @@ import '../../assets/scss/ProfileCard.scss';
 const MainBody = React.memo(function MainBody(props) {
   return (
     <div className={'d-flex justify-content-center'}>
-      <div className={'col-12 col-md-7'}>
+      <div className={'col-12 col-md-12 col-lg-7'}>
         <WriteTweet />
         <Posts />
       </div>
