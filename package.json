@@ -83,7 +83,7 @@
     "dev": "npm-run-all --parallel dev:*"
   },
   "engines": {
-    "node": "10.15.0",
+    "node": "10.15.1",
     "npm": "6.4.1",
     "yarn": "1.13.0"
   },
