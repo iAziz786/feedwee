@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLink, FiMapPin, FiGift, FiCalendar } from 'react-icons/fi';
 
+import { Avatar } from './style';
+
 import ProfileSummaryStyle from './ProfileDetails.module.scss';
 
 class ProfileDetails extends Component {
@@ -12,7 +14,7 @@ class ProfileDetails extends Component {
           <div>
             <Link to={'/aziz/photo'}>
               <div>
-                <img
+                <Avatar
                   src={
                     'https://pbs.twimg.com/profile_images/1073073237016272897/QJUZCLvh_x96.jpg'
                   }
