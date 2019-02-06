@@ -10,6 +10,7 @@ import index from '../../assets/scss/index.module.scss';
 import Explore from '../Explore';
 import Notifications from '../Notifications';
 import Messages from '../Messages';
+import Avatar from '../Avatar';
 
 const Status = Loadable.Map({
   loader: {
@@ -37,6 +38,18 @@ class App extends React.PureComponent {
     showDropdown: false
   };
 
+  previousLocation = this.props.location;
+
+  componentDidUpdate(prevProp) {
+    let { location } = prevProp;
+    if (
+      this.props.history.action !== 'POP' &&
+      (!location.state || !location.state.showModal)
+    ) {
+      this.previousLocation = location;
+    }
+  }
+
   toggleDropdown = () => {
     this.setState(prevState => ({
       showDropdown: !prevState.showDropdown
@@ -50,6 +63,13 @@ class App extends React.PureComponent {
   };
 
   render() {
+    const { location } = this.props;
+    const showModal = !!(
+      location.state &&
+      location.state.showModal &&
+      this.previousLocation !== location
+    );
+    const modalFor = location.state && location.state.modalFor;
     return (
       <div
         className={index.theme}
@@ -62,14 +82,18 @@ class App extends React.PureComponent {
           toggleDropdown={this.toggleDropdown}
         />
         <div className={`container ${AppStyle.App}`}>
-          <Switch>
+          <Switch location={showModal ? this.previousLocation : location}>
             <Route exact path={'/'} component={MainBody} />
             <Route path={'/explore'} component={Explore} />
             <Route path={'/notifications'} component={Notifications} />
             <Route path={'/messages'} component={Messages} />
             <Route path={'/:userId/status/:feedId'} component={Status} />
-            <Route path={'/:username'} component={Profile} />
+            <Route path={'/:username/photo'} component={Avatar} />
+            <Route exact path={'/:username'} component={Profile} />
           </Switch>
+          {showModal && modalFor === 'avatar' ? (
+            <Route exact path={'/:username/photo'} component={Avatar} />
+          ) : null}
         </div>
       </div>
     );
