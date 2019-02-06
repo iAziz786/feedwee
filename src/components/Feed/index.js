@@ -13,7 +13,10 @@ const Feed = React.memo(function Feed(props) {
       <div className={'py-2 px-3 ml-5'}>
         <div className={text.small}>someone liked your tweet</div>
         <div className={FeedStyle.author}>
-          <Link to={feed.creator.username} className={FeedStyle['author-link']}>
+          <Link
+            to={`/${feed.creator.username}`}
+            className={FeedStyle['author-link']}
+          >
             {feed.creator && feed.creator.name}{' '}
             <p className={FeedStyle['author-username']}>
               @{feed.creator && feed.creator.username}
