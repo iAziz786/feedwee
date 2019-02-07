@@ -1,6 +1,8 @@
 import React from 'react';
 import MDSpinner from 'react-md-spinner';
 
+import { Wrapper } from './style';
+
 function Loading(props) {
   if (props.error) {
     return (
@@ -16,9 +18,9 @@ function Loading(props) {
     );
   } else if (props.pastDelay) {
     return (
-      <div>
+      <Wrapper>
         <MDSpinner singleColor={'#1da1f2'} />
-      </div>
+      </Wrapper>
     );
   } else {
     return null;
