@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
@@ -33,71 +33,54 @@ const MainBody = Loadable({
   loading: Loading
 });
 
-class App extends React.PureComponent {
-  state = {
-    showDropdown: false
-  };
+function App(props) {
+  const [previousLocation, setLocation] = useState(props.location);
+  const [showModal, setModal] = useState(
+    !!(props.location && props.location.state && props.location.state.showModal)
+  );
+  const { location } = props;
+  const modalFor = location.state && location.state.modalFor;
 
-  previousLocation = this.props.location;
-
-  componentDidUpdate(prevProp) {
-    let { location } = prevProp;
+  useEffect(() => {
     if (
-      this.props.history.action !== 'POP' &&
+      !!(
+        props.location &&
+        props.location.state &&
+        props.location.state.showModal
+      )
+    ) {
+      setModal(true);
+    }
+  });
+
+  useEffect(() => {
+    if (
+      props.history.action !== 'POP' &&
       (!location.state || !location.state.showModal)
     ) {
-      this.previousLocation = location;
+      setLocation(location);
     }
-  }
+  });
 
-  toggleDropdown = () => {
-    this.setState(prevState => ({
-      showDropdown: !prevState.showDropdown
-    }));
-  };
-
-  handleOnClick = () => {
-    if (this.state.showDropdown) {
-      this.toggleDropdown();
-    }
-  };
-
-  render() {
-    const { location } = this.props;
-    const showModal = !!(
-      location.state &&
-      location.state.showModal &&
-      this.previousLocation !== location
-    );
-    const modalFor = location.state && location.state.modalFor;
-    return (
-      <div
-        className={index.theme}
-        onClick={this.handleOnClick}
-        {...this.props}
-        style={{ minHeight: '100%' }}
-      >
-        <Header
-          showDropdown={this.state.showDropdown}
-          toggleDropdown={this.toggleDropdown}
-        />
-        <div className={`container ${AppStyle.App}`}>
-          <Switch location={showModal ? this.previousLocation : location}>
-            <Route exact path={'/'} component={MainBody} />
-            <Route path={'/explore'} component={Explore} />
-            <Route path={'/notifications'} component={Notifications} />
-            <Route path={'/messages'} component={Messages} />
-            <Route path={'/:userId/status/:feedId'} component={Status} />
-            <Route path={'/:username/photo'} component={Avatar} />
-            <Route exact path={'/:username'} component={Profile} />
-          </Switch>
-          {showModal && modalFor === 'avatar' ? (
-            <Route exact path={'/:username/photo'} component={Avatar} />
-          ) : null}
-        </div>
+  return (
+    <div className={index.theme} {...props} style={{ minHeight: '100%' }}>
+      <Header showDropdown={false} />
+      <div className={`container ${AppStyle.App}`}>
+        <Switch location={showModal ? previousLocation : location}>
+          <Route exact path={'/'} component={MainBody} />
+          <Route path={'/explore'} component={Explore} />
+          <Route path={'/notifications'} component={Notifications} />
+          <Route path={'/messages'} component={Messages} />
+          <Route path={'/:userId/status/:feedId'} component={Status} />
+          <Route path={'/:username/photo'} component={Avatar} />
+          <Route exact path={'/:username'} component={Profile} />
+        </Switch>
+        {showModal && modalFor === 'avatar' && (
+          <Route exact path={'/:username/photo'} component={Avatar} />
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
