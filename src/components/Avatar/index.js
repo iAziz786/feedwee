@@ -2,7 +2,6 @@ import React from 'react';
 import { ModalBackground, ModalContent } from './style';
 
 function Avatar(props) {
-  console.log({ props });
   return (
     <ModalBackground>
       <ModalContent>
