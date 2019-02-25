@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FiHome, FiBell, FiMail, FiSearch } from 'react-icons/fi';
 
-import BrandLogo from '../BrandLogo';
-import BurgerIcon from '../BurgerIcon';
-
 import {
   MainWrapper,
   FixWrapper,
