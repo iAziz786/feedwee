@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Timeago from 'react-timeago';
 import FeedStyle from './Feed.module.scss';
 import TweetFooter from '../TweetFooter';
+import { SecondaryText, Dot } from './style';
 
 import text from '../../assets/scss/_text.module.scss';
 import '../../assets/scss/_spacing.scss';
@@ -17,9 +19,13 @@ const Feed = React.memo(function Feed(props) {
             className={FeedStyle['author-link']}
           >
             {feed.creator && feed.creator.name}{' '}
-            <p className={FeedStyle['author-username']}>
+            <SecondaryText>
               @{feed.creator && feed.creator.username}
-            </p>
+            </SecondaryText>
+            <Dot>.</Dot>
+            <SecondaryText>
+              <Timeago date={feed.createdAt} />
+            </SecondaryText>
           </Link>
         </div>
         <div className={FeedStyle.content}>
