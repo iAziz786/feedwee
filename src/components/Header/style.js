@@ -10,6 +10,7 @@ export const MainWrapper = styled.div`
 
 export const FixWrapper = styled.div`
   position: fixed;
+  background-color: #10171e;
   width: 100%;
   z-index: 99;
 `;
