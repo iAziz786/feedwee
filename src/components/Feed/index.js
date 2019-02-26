@@ -11,7 +11,6 @@ const Feed = React.memo(function Feed(props) {
   return (
     <div className={`${FeedStyle.Feed} ${FeedStyle.border}`}>
       <div className={'py-2 px-3 ml-5'}>
-        <div className={text.small}>someone liked your tweet</div>
         <div className={FeedStyle.author}>
           <Link
             to={`/${feed.creator.username}`}
