@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 import Feed from '../Feed';
 import Loading from '../Loading';
 
 const Feeds = props => {
-  const [feeds, setFeeds] = useState([]);
-
-  useEffect(() => {
-    axios.get('/api/tweets').then(res => {
-      setFeeds([...feeds, ...res.data.tweets]);
-    });
-  }, []);
+  const { feeds } = props;
 
   if (!feeds.length) {
     return <Loading />;

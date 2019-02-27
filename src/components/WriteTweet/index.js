@@ -17,10 +17,13 @@ class WriteTweet extends React.Component {
   };
   tweetPost = async () => {
     try {
-      await axios.post('/api/tweet/new', {
-        tweetBody: this.state.tweetBody
-      });
-      console.log('then');
+      await axios
+        .post('/api/tweet/new', {
+          tweetBody: this.state.tweetBody
+        })
+        .then(({ data }) => {
+          this.props.updateFeeds([data.tweet, ...this.props.feeds]);
+        });
     } catch (err) {
       console.log(err);
     }
@@ -28,7 +31,7 @@ class WriteTweet extends React.Component {
       () => ({
         tweetBody: ''
       }),
-      () => this.forceUpdate(() => console.log('called forceupdate'))
+      this.forceUpdate
     );
     // this.forceUpdate(() => console.log('called forceupdate'));
   };
