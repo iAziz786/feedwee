@@ -5,6 +5,7 @@ async function createTweet(req, res) {
   const { _id: creator } = req.user;
   try {
     const tweet = await Tweet.create({ body: tweetBody, creator });
+    await Tweet.populate(tweet, { path: 'creator' });
     return res.status(201).json({ success: true, tweet });
   } catch (err) {
     return res.status(400).json({ success: false });
