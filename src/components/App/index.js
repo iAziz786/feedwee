@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Loadable from 'react-loadable';
 import Header from '../Header';
 import Loading from '../Loading';
 
@@ -12,26 +11,9 @@ import Notifications from '../Notifications';
 import Messages from '../Messages';
 import Avatar from '../Avatar';
 
-const Status = Loadable.Map({
-  loader: {
-    Status: () => import('../Status')
-  },
-  render(loaded, props) {
-    const Status = loaded.Status.default;
-    return <Status {...props} />;
-  },
-  loading: Loading
-});
-
-const Profile = Loadable({
-  loader: () => import('../Profile'),
-  loading: Loading
-});
-
-const MainBody = Loadable({
-  loader: () => import('../MainBody'),
-  loading: Loading
-});
+const Status = React.lazy(() => import('../Status'));
+const Profile = React.lazy(() => import('../Profile'));
+const MainBody = React.lazy(() => import('../MainBody'));
 
 function App(props) {
   const [previousLocation, setLocation] = useState(props.location);
@@ -66,18 +48,20 @@ function App(props) {
     <div className={index.theme} {...props} style={{ minHeight: '100%' }}>
       <Header showDropdown={false} />
       <div className={`container ${AppStyle.App}`}>
-        <Switch location={showModal ? previousLocation : location}>
-          <Route exact path={'/'} component={MainBody} />
-          <Route path={'/explore'} component={Explore} />
-          <Route path={'/notifications'} component={Notifications} />
-          <Route path={'/messages'} component={Messages} />
-          <Route path={'/:userId/status/:feedId'} component={Status} />
-          <Route path={'/:username/photo'} component={Avatar} />
-          <Route exact path={'/:username'} component={Profile} />
-        </Switch>
-        {showModal && modalFor === 'avatar' && (
-          <Route exact path={'/:username/photo'} component={Avatar} />
-        )}
+        <React.Suspense fallback={<Loading />}>
+          <Switch location={showModal ? previousLocation : location}>
+            <Route exact path={'/'} component={MainBody} />
+            <Route path={'/explore'} component={Explore} />
+            <Route path={'/notifications'} component={Notifications} />
+            <Route path={'/messages'} component={Messages} />
+            <Route path={'/:userId/status/:feedId'} component={Status} />
+            <Route path={'/:username/photo'} component={Avatar} />
+            <Route exact path={'/:username'} component={Profile} />
+          </Switch>
+          {showModal && modalFor === 'avatar' && (
+            <Route exact path={'/:username/photo'} component={Avatar} />
+          )}
+        </React.Suspense>
       </div>
     </div>
   );
