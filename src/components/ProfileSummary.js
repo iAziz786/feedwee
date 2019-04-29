@@ -2,9 +2,9 @@ import React from 'react';
 
 import Card from './Card';
 
-import imageUrl from '../assets/img/cover.jpg'
+import imageUrl from '../assets/img/cover.jpg';
 
-const ProfileSummary = React.memo(function ProfileSummary(props) {
+function ProfileSummary(props) {
   return (
     <div
       className={
@@ -26,9 +26,7 @@ const ProfileSummary = React.memo(function ProfileSummary(props) {
         </div>
       </Card>
       <Card>
-        <a
-          className={'ProfileCard__avatarLink'}
-          href={`${'userId'}`}>
+        <a className={'ProfileCard__avatarLink'} href={`${'userId'}`}>
           <img
             className={'ProfileCard__avatarImage'}
             src={
@@ -56,7 +54,7 @@ const ProfileSummary = React.memo(function ProfileSummary(props) {
         </div>
       </Card>
     </div>
-  )
-});
+  );
+}
 
 export default ProfileSummary;

@@ -8,7 +8,7 @@ import { SecondaryText, Dot } from './style';
 import text from '../../assets/scss/_text.module.scss';
 import '../../assets/scss/_spacing.scss';
 
-const Feed = React.memo(function Feed(props) {
+function Feed(props) {
   const { feed } = props;
   return (
     <div className={`${FeedStyle.Feed} ${FeedStyle.border}`}>
@@ -35,6 +35,6 @@ const Feed = React.memo(function Feed(props) {
       </div>
     </div>
   );
-});
+}
 
 export default Feed;

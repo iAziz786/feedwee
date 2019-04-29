@@ -2,7 +2,7 @@ import React from 'react';
 
 import Card from './Card';
 
-const Suggestions = React.memo(function Suggestions(props) {
+function Suggestions(props) {
   return (
     <div
       className={'d-none d-lg-block flex-fill col-3  mx-1 border-orange Aside'}
@@ -10,6 +10,6 @@ const Suggestions = React.memo(function Suggestions(props) {
       <Card>No suggested people to follow</Card>
     </div>
   );
-});
+}
 
 export default Suggestions;

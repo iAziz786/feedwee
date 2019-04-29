@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import DropdownStyle from './Dropdown.module.scss';
 
-const Dropdown = React.memo(function Dropdown(props) {
+function Dropdown(props) {
   return (
     <div
-      className={
-        `${DropdownStyle.Dropdown} ${props.show ? 'd-none' : 'd-block'} py-2`
-      }
+      className={`${DropdownStyle.Dropdown} ${
+        props.show ? 'd-none' : 'd-block'
+      } py-2`}
     >
       <div className={'px-3 py-2'}>
         <p>Logout</p>
@@ -17,15 +17,15 @@ const Dropdown = React.memo(function Dropdown(props) {
         <p>Profile</p>
       </div>
     </div>
-  )
-})
+  );
+}
 
 Dropdown.propTypes = {
-  show: PropTypes.bool,
+  show: PropTypes.bool
 };
 
 Dropdown.defaultProps = {
-  show: true,
-}
+  show: true
+};
 
 export default Dropdown;

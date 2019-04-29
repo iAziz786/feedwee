@@ -7,7 +7,7 @@ import WriteTweet from '../WriteTweet';
 
 import '../../assets/scss/ProfileCard.scss';
 
-const MainBody = React.memo(function MainBody(props) {
+function MainBody(props) {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
@@ -24,6 +24,6 @@ const MainBody = React.memo(function MainBody(props) {
       <Suggestions />
     </div>
   );
-});
+}
 
 export default MainBody;

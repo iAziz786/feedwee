@@ -4,7 +4,7 @@ import { FiMessageCircle, FiHeart, FiRepeat } from 'react-icons/fi';
 import text from '../../assets/scss/_text.module.scss';
 import TweetFooterStyle from './TweetFooter.module.scss';
 
-const TweetFooter = React.memo(function TweetFooter(props) {
+function TweetFooter(props) {
   const [heartSelected, useHeartState] = useState(false);
   return (
     <div className={`d-flex mt-2 justify-content-around ${text.small}`}>
@@ -21,6 +21,6 @@ const TweetFooter = React.memo(function TweetFooter(props) {
       />
     </div>
   );
-});
+}
 
 export default TweetFooter;
