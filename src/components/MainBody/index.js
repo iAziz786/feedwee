@@ -6,9 +6,12 @@ import Suggestions from '../Suggestions';
 import WriteTweet from '../WriteTweet';
 
 import '../../assets/scss/ProfileCard.scss';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 function MainBody(props) {
   const [feeds, setFeeds] = useState([]);
+
+  useDocumentTitle('FeedWee');
 
   useEffect(() => {
     axios.get('/api/tweets').then(res => {
